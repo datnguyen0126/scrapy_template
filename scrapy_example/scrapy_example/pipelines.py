@@ -8,6 +8,7 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 import sqlite3
+from dotenv import dotenv_values
 
 class QuotePipeline:
 
@@ -35,6 +36,7 @@ class QuotePipeline:
 
 
     def process_item(self, item, spider):
+        print(dotenv_values(".env"))
         print(f"My item: {item['title'][0]}")
         self.store_db(item=item)
         return item
