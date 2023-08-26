@@ -21,7 +21,7 @@ class QuoteSpider(scrapy.Spider):
     """
 
     def parse(self, response, **kwargs):
-        quote_item = QuoteItem()
+        quote_items = QuoteItem()
 
         all_div_quotes = response.css("div.quote")
         for div_quote in all_div_quotes:
@@ -29,8 +29,8 @@ class QuoteSpider(scrapy.Spider):
             author = div_quote.css("small.author::text").extract()
             tags = div_quote.css("a.tag::text").extract()
 
-            quote_item["title"] = title
-            quote_item["author"] = author
-            quote_item["tags"] = tags
+            quote_items["title"] = title
+            quote_items["author"] = author
+            quote_items["tags"] = tags
 
-            yield quote_item
+            yield quote_items
